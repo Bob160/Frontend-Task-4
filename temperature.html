@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="all" id="all">
+        <p class="first" id="first">
+            Enter the temperature in Fahrenheit:
+            <input type="" id="temp" class="hot" placeholder="Temperature">
+        </p>
+        <button onclick="convertFahrToCelsius()">
+            Convert
+        </button>
+        <p id="result"></p>
+    </div>
+    <script>
+        var displayResult = (value = "", valueType = "") => {
+            var message = "";
+            if (valueType.trim() !== '') {
+                message = `${value} is not a valid number but a/an ${valueType}.`;
+            } else {
+                message = `The temperatur is ${value} degree celcius`;
+            }
+
+            document.getElementById('result').innerHTML = message;
+        }
+
+        var convertFahrToCelsius = () => {
+            var fahr = document.getElementById('temp').value;
+
+            if (!fahr || fahr === '') {
+                alert("Please enter a value")
+                return 0
+            }
+            if (Array.isArray(fahr)) {
+                displayResult(fahr, "array")
+            }
+
+            if (fahr instanceof Object) {
+                displayResult(JSON.stringify(fahr), "object")
+            }
+
+            if (fahr !== 0 && !parseFloat(fahr)) {
+                displayResult(fahr, (typeof fahr))
+            }
+
+            displayResult(((parseFloat(fahr) - 32) * 5 / 9).toFixed(4))
+        }
+
+    </script>
+
+
+</body>
+
+</html>
